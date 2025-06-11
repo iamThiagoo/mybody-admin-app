@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import './styles/global.css'
-import HomeView from './views/Dashboard.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import router from './utils/router';
+import App from './App.vue';
 
-const app = createApp(HomeView)
+const app = createApp(App)
 app.use(router)
 app.use(PrimeVue, {
     theme: {

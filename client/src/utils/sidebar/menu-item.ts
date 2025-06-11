@@ -1,28 +1,37 @@
-export const menuItems = [
+export type TMenu = {
+    route: string
+    label: string
+    icon: string
+}
+
+export const menuItems: TMenu[] = [
     {
+        route: '/dashboard',
         label: 'Dashboard',
         icon: 'https://cdn.lordicon.com/upjgggre.json',
-        colorClass: 'text-lime-500',
-        bgClass: 'bg-lime-100',
-        textClass: 'text-lime-800 font-semibold',
     },
     {
+        route: '/alunos',
         label: 'Alunos',
         icon: 'https://cdn.lordicon.com/cniwvohj.json',
     },
     {
+        route: '/treinos',
         label: 'Treinos',
         icon: 'https://cdn.lordicon.com/bimokqfw.json',
     },
     {
+        route: '/exercicios',
         label: 'Exercícios',
         icon: 'https://cdn.lordicon.com/apgkpdeb.json',
     },
     {
+        route: '/instrutores',
         label: 'Instrutores',
         icon: 'https://cdn.lordicon.com/wwcdwkaf.json',
     },
     {
+        route: '/planos',
         label: 'Planos',
         icon: 'https://cdn.lordicon.com/gzqofmcx.json',
     },
