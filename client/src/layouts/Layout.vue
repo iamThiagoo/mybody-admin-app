@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import MenuBar from '@/components/app/menubar/MenuBar.vue';
+// @ts-ignore
 import Navbar from '@/components/app/navbar/Navbar.vue';
 import { ref, onMounted, watch } from 'vue';
 

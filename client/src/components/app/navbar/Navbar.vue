@@ -38,14 +38,14 @@
                 </lord-icon>
                 <div class="text-sm flex items-center gap-x-2">
                     <img src="https://i2.wp.com/ui-avatars.com/api//Admin/128?ssl=1" class="size-8 rounded-full" />
-                    Admin MyBody
+                    Admin Supremo Master
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   isOpen: Boolean
 });

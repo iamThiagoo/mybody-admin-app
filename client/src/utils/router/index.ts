@@ -14,31 +14,31 @@ const routes = [
     {
         path: '/alunos',
         name: 'Alunos',
-        component: () => import('@/views/Dashboard.vue'),
+        component: () => import('@/views/Alunos.vue'),
         meta: { title: 'Alunos' },
     },
     {
         path: '/treinos',
         name: 'Treinos',
-        component: () => import('@/views/Dashboard.vue'),
+        component: () => import('@/views/Treinos.vue'),
         meta: { title: 'Treinos' },
     },
     {
         path: '/exercicios',
         name: 'Exercicios',
-        component: () => import('@/views/Dashboard.vue'),
+        component: () => import('@/views/Exercicios.vue'),
         meta: { title: 'Exercícios' },
     },
     {
         path: '/instrutores',
         name: 'Instrutores',
-        component: () => import('@/views/Dashboard.vue'),
+        component: () => import('@/views/Instrutores.vue'),
         meta: { title: 'Instrutores' },
     },
     {
         path: '/planos',
         name: 'Planos',
-        component: () => import('@/views/Dashboard.vue'),
+        component: () => import('@/views/Planos.vue'),
         meta: { title: 'Planos' },
     },
 ];
@@ -48,7 +48,7 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
     document.title = `${to.meta.title} - MyBody Admin`
     next()
   })

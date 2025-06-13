@@ -1,5 +1,5 @@
 <template>
   <div class="relative">
-    fdsfdsf
+    <h2 class="text-3xl font-medium text-gray-600">Dashboard</h2>
   </div>
 </template>
