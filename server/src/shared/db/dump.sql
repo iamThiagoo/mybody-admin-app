@@ -18,7 +18,7 @@ CREATE TABLE alunos (
     genero VARCHAR(1),
     data_matricula DATE DEFAULT GETDATE(),
     plano_id INT,
-    status NVARCHAR(10) DEFAULT 'ativo',
+    status VARCHAR(10) DEFAULT 'ativo',
     created_at DATETIME DEFAULT GETDATE(),
     updated_at DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (plano_id) REFERENCES planos(id)
@@ -26,11 +26,11 @@ CREATE TABLE alunos (
 
 CREATE TABLE instrutores (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    nome NVARCHAR(100) NOT NULL,
-    email NVARCHAR(100) UNIQUE,
-    telefone NVARCHAR(20),
-    especialidade NVARCHAR(100),
-    cref NVARCHAR(50),
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    telefone VARCHAR(20),
+    especialidade VARCHAR(100),
+    cref VARCHAR(50),
     created_at DATETIME DEFAULT GETDATE(),
     updated_at DATETIME DEFAULT GETDATE()
 );
