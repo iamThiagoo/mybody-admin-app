@@ -16,11 +16,6 @@ export const menuItems: TMenu[] = [
         icon: 'https://cdn.lordicon.com/cniwvohj.json',
     },
     {
-        route: '/treinos',
-        label: 'Treinos',
-        icon: 'https://cdn.lordicon.com/bimokqfw.json',
-    },
-    {
         route: '/exercicios',
         label: 'Exercícios',
         icon: 'https://cdn.lordicon.com/apgkpdeb.json',
@@ -29,10 +24,5 @@ export const menuItems: TMenu[] = [
         route: '/instrutores',
         label: 'Instrutores',
         icon: 'https://cdn.lordicon.com/wwcdwkaf.json',
-    },
-    {
-        route: '/planos',
-        label: 'Planos',
-        icon: 'https://cdn.lordicon.com/gzqofmcx.json',
     },
 ]

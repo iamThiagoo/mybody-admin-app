@@ -18,12 +18,6 @@ const routes = [
         meta: { title: 'Alunos' },
     },
     {
-        path: '/treinos',
-        name: 'Treinos',
-        component: () => import('@/views/Treinos.vue'),
-        meta: { title: 'Treinos' },
-    },
-    {
         path: '/exercicios',
         name: 'Exercicios',
         component: () => import('@/views/Exercicios.vue'),
@@ -34,13 +28,7 @@ const routes = [
         name: 'Instrutores',
         component: () => import('@/views/Instrutores.vue'),
         meta: { title: 'Instrutores' },
-    },
-    {
-        path: '/planos',
-        name: 'Planos',
-        component: () => import('@/views/Planos.vue'),
-        meta: { title: 'Planos' },
-    },
+    }
 ];
 
 const router = createRouter({

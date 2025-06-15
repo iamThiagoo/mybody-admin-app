@@ -8,11 +8,12 @@
                     <div class="relative w-full max-w-sm items-center">
                         <Input id="search" type="text" placeholder="Buscar por aluno..." class="pl-10 bg-white" />
                         <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-                        <Search class="size-6 text-muted-foreground" />
+                            <Search class="size-6 text-muted-foreground" />
                         </span>
                     </div>
                 </div>
-                <Button class="!bg-slate-500 cursor-pointer !px-5 !text-sm !border-0 flex !text-white gap-x-3 hover:opacity-80">
+                <Button
+                    class="!bg-slate-500 cursor-pointer !px-5 !text-sm !border-0 flex !text-white gap-x-3 hover:opacity-80">
                     <Plus class="size-6" />
                     Adicionar
                 </Button>
@@ -20,11 +21,17 @@
         </div>
 
         <div class="mt-10">
-            <DataTable :value="students" stripedRows tableStyle="min-width: 50rem">
+            <DataTable :size="'small'" paginator  :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" :value="students"
+                stripedRows tableStyle="min-width: 50rem">
                 <Column field="code" header="Code"></Column>
                 <Column field="name" header="Name"></Column>
                 <Column field="category" header="Category"></Column>
                 <Column field="quantity" header="Quantity"></Column>
+                <Column class="w-24 !text-end">
+                    <template #body="{ data }">
+                        <Button icon="pi pi-search" severity="secondary" rounded></Button>
+                    </template>
+                </Column>
             </DataTable>
         </div>
     </section>

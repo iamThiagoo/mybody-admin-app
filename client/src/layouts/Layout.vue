@@ -1,5 +1,5 @@
 <template>
-    <main class="h-[calc(100vh)] bg-lime-50/60">
+    <main class="h-[calc(100vh)] bg-lime-50/30">
         <Navbar :is-open="isSidebarVisible" @close-sidebar="toggleSidebar" />
 
         <div class="relative flex pt-16 lg:pl-60">

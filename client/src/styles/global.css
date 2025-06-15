@@ -8,7 +8,7 @@
 @import "tailwindcss-primeui";
 
 * {
-  font-family: 'Inter';
+  font-family: 'Inter' !important;
 }
 
 h1 {
