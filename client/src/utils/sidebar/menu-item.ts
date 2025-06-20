@@ -25,4 +25,9 @@ export const menuItems: TMenu[] = [
         label: 'Instrutores',
         icon: 'https://cdn.lordicon.com/wwcdwkaf.json',
     },
+    {
+        route: '/planos',
+        label: 'Planos',
+        icon: 'https://cdn.lordicon.com/gzqofmcx.json',
+    },
 ]

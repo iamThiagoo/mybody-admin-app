@@ -27,8 +27,9 @@ export class PlanosController {
   findAll(
     @Query('page') page = 1,
     @Query('limit') limit = 10,
+    @Query('search') search: string | undefined,
   ): Promise<{ data: Plano[]; count: number }> {
-    return this.service.pagination(page, limit);
+    return this.service.pagination(page, limit, search);
   }
 
   @Get(':id')

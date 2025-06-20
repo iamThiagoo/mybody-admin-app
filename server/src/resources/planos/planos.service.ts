@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePlanoDto } from './dto/create-plano.dto';
 import { UpdatePlanoDto } from './dto/update-plano.dto';
 import { Plano } from 'src/entities/plano.entity';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class PlanosService {
@@ -20,8 +20,14 @@ export class PlanosService {
   async pagination(
     page = 1,
     limit = 10,
+    search: string | undefined,
   ): Promise<{ data: Plano[]; count: number }> {
+    const where = search
+      ? [{ nome: ILike(`%${search}%`) }, { descricao: ILike(`%${search}%`) }]
+      : undefined;
+
     const [data, count] = await this.repository.findAndCount({
+      where,
       skip: (page - 1) * limit,
       take: limit,
       relations: ['alunos'],

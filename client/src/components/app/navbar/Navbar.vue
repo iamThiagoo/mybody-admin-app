@@ -4,7 +4,7 @@
             class="fixed inset-x-0 z-[9999] h-16 bg-white shadow-sm flex items-center justify-between gap-4 px-6 top-8 rounded-t-xl">
             <div class="flex items-center gap-42">
                 <h1>
-                    <a class="ml-1 gap-x-1 flex items-center text-xl font-semibold text-lime-900">
+                    <router-link to="/dashboard" class="cursor-pointer hover:opacity-80 transition-all ml-1 gap-x-1 flex items-center text-xl font-semibold text-lime-900">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="30" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-dumbbell-icon lucide-dumbbell">
@@ -16,7 +16,7 @@
                                 d="M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z" />
                             <path d="m9.6 14.4 4.8-4.8" />
                         </svg>
-                    </a>
+                    </router-link>
                 </h1>
                 <svg v-if="isOpen" @click="$emit('close-sidebar')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                     fill="currentColor" class="w-6 h-6 text-[#4B5563] cursor-pointer flex-shrink-0">
@@ -34,11 +34,10 @@
             </div>
 
             <div class="flex gap-x-5 items-center cursor-pointer">
-                <lord-icon src="https://cdn.lordicon.com/ahxaipjb.json" trigger="hover" class="size-7">
-                </lord-icon>
+                <lord-icon @click="() => toast.info('Essa feature ainda não foi implementada!')" src="https://cdn.lordicon.com/ahxaipjb.json" trigger="hover" class="size-7"></lord-icon>
                 <div class="text-sm flex items-center gap-x-2">
-                    <img src="https://i2.wp.com/ui-avatars.com/api//Admin/128?ssl=1" class="size-8 rounded-full" />
-                    Admin Supremo Master
+                    <img src="/admin.jpeg" class="size-8 rounded-full object-cover" />
+                    Admin
                 </div>
             </div>
         </div>
@@ -46,6 +45,8 @@
 </template>
 
 <script setup lang="ts">
+import { toast } from 'vue-sonner';
+
 defineProps({
   isOpen: Boolean
 });

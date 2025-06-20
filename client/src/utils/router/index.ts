@@ -28,7 +28,13 @@ const routes = [
         name: 'Instrutores',
         component: () => import('@/views/Instrutores.vue'),
         meta: { title: 'Instrutores' },
-    }
+    },
+    {
+        path: '/planos',
+        name: 'Planos',
+        component: () => import('@/views/Planos.vue'),
+        meta: { title: 'Planos' },
+    },
 ];
 
 const router = createRouter({
