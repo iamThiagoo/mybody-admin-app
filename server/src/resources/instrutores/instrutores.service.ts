@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { CreateInstrutorDto } from './dto/create-instrutor.dto';
 import { UpdateInstrutorDto } from './dto/update-instrutor.dto';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Instrutor } from 'src/entities/instrutor.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -24,8 +24,19 @@ export class InstrutoresService {
   async pagination(
     page = 1,
     limit = 10,
+    search: string | undefined,
   ): Promise<{ data: Instrutor[]; count: number }> {
+    const where = search
+      ? [
+          { nome: ILike(`%${search}%`) },
+          { email: ILike(`%${search}%`) },
+          { telefone: ILike(`%${search}%`) },
+          { especialidade: ILike(`%${search}%`) },
+        ]
+      : undefined;
+
     const [data, count] = await this.repository.findAndCount({
+      where,
       skip: (page - 1) * limit,
       take: limit,
       order: { id: 'DESC' },
@@ -62,7 +73,7 @@ export class InstrutoresService {
 
     if (!instrutor) throw new NotFoundException(`Instrutor não encontrado!`);
 
-    if (instrutor.avaliacoes) {
+    if (instrutor.avaliacoes && instrutor.avaliacoes.length > 0) {
       throw new InternalServerErrorException(
         `Instrutor possui avaliações cadastradas!`,
       );

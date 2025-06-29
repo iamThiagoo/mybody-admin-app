@@ -60,7 +60,7 @@ export class AlunosService {
 
     if (!aluno) throw new NotFoundException(`Aluno não encontrado!`);
 
-    if (aluno.avaliacoes.length > 0) {
+    if (aluno.avaliacoes && aluno.avaliacoes.length > 0) {
       throw new InternalServerErrorException(
         `Não é possível remover o aluno pois ele possui avaliações cadastradas!`,
       );

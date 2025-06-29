@@ -10,9 +10,19 @@
       </FormItem>
     </FormField>
 
-    <FormField v-slot="{ componentField }" name="descricao" :validate-on-blur="false">
+    <FormField v-slot="{ componentField }" name="email" :validate-on-blur="false">
       <FormItem>
-        <FormLabel>Descrição</FormLabel>
+        <FormLabel>Email <span class="text-red-500 -ml-1">*</span></FormLabel>
+        <FormControl>
+          <Input v-bind="componentField" type="email" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
+    <FormField v-slot="{ componentField }" name="especialidade" :validate-on-blur="false">
+      <FormItem>
+        <FormLabel>Especialidade <span class="text-red-500 -ml-1">*</span></FormLabel>
         <FormControl>
           <Input v-bind="componentField" type="text" />
         </FormControl>
@@ -22,11 +32,11 @@
 
     <div class="grid grid-cols-12 gap-4">
       <div class="col-span-6">
-        <FormField v-slot="{ componentField }" name="duracao_dias" :validate-on-blur="false">
+        <FormField v-slot="{ componentField }" name="telefone" :validate-on-blur="false">
           <FormItem>
-            <FormLabel>Duração (Dias) <span class="text-red-500 -ml-1">*</span></FormLabel>
+            <FormLabel>Telefone <span class="text-red-500 -ml-1">*</span></FormLabel>
             <FormControl>
-              <Input v-bind="componentField" type="number" />
+              <Input v-bind="componentField" type="tel" />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -34,11 +44,11 @@
       </div>
 
       <div class="col-span-6">
-        <FormField v-slot="{ componentField }" name="preco" :validate-on-blur="false">
+        <FormField v-slot="{ componentField }" name="cref" :validate-on-blur="false">
           <FormItem>
-            <FormLabel>Preço (R$) <span class="text-red-500 -ml-1">*</span></FormLabel>
+            <FormLabel>CREF <span class="text-red-500 -ml-1">*</span></FormLabel>
             <FormControl>
-              <Input v-bind="componentField" type="number" step="0.01" />
+              <Input v-bind="componentField" type="text" />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -74,29 +84,31 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Save } from 'lucide-vue-next'
-import { create, update } from '@/api/planos'
-import type { PlanoItem } from '@/utils/@types/plano'
+import { create, update } from '@/api/instrutores'
+import type { Instrutor } from '@/utils/@types/instrutores'
 
 const props = defineProps<{
-  item: PlanoItem | null
+  item: Instrutor | null
 }>()
 
 const emit = defineEmits(['update', 'close']);
 
 const formSchema = z.object({
   nome: z.string().min(1, 'Nome obrigatório'),
-  descricao: z.string().optional(),
-  duracao_dias: z.number().min(1, 'Duração mínima de 1 dia'),
-  preco: z.number().min(0, 'Preço não pode ser negativo')
+  email: z.string().min(1, 'E-mail é obrigatório'),
+  especialidade: z.string().min(1, 'Especialidade é obrigatório'),
+  telefone: z.string().min(1, 'Telefone é obrigatório'),
+  cref: z.string().min(1, 'CREF é obrigatório'),
 })
 
 const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(formSchema),
   initialValues: {
     nome: props.item?.nome || '',
-    descricao: props.item?.descricao || '',
-    duracao_dias: props.item?.duracao_dias || 30,
-    preco: props.item?.preco || 0
+    email: props.item?.email || '',
+    especialidade: props.item?.especialidade || '',
+    telefone: props.item?.telefone || '',
+    cref: props.item?.cref || '',
   }
 })
 
@@ -104,10 +116,10 @@ const onSubmit = handleSubmit(async (values) => {
   try {
     if (props.item?.id) {
       await update(props.item?.id, values);
-      toast.success('Plano editado com sucesso!');
+      toast.success('Instrutor editado com sucesso!');
     } else {
       await create(values);
-      toast.success('Plano salvo com sucesso!');
+      toast.success('Instrutor salvo com sucesso!');
     }
 
     emit('update');
