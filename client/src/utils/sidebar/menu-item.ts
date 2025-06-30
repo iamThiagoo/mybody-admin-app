@@ -16,6 +16,11 @@ export const menuItems: TMenu[] = [
         icon: 'https://cdn.lordicon.com/cniwvohj.json',
     },
     {
+        route: '/avaliacoes-fisicas',
+        label: 'Avaliações Físicas',
+        icon: 'https://cdn.lordicon.com/jqqjtvlf.json',
+    },
+    {
         route: '/exercicios',
         label: 'Exercícios',
         icon: 'https://cdn.lordicon.com/apgkpdeb.json',

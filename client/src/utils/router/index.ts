@@ -24,6 +24,12 @@ const routes = [
         meta: { title: 'Exercícios' },
     },
     {
+        path: '/avaliacoes-fisicas',
+        name: 'Avaliacoes Fisicas',
+        component: () => import('@/views/AvaliacoesFisicas.vue'),
+        meta: { title: 'Avaliações Físicas' },
+    },
+    {
         path: '/instrutores',
         name: 'Instrutores',
         component: () => import('@/views/Instrutores.vue'),

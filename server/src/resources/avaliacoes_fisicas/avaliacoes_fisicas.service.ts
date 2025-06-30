@@ -3,7 +3,7 @@ import { CreateAvaliacoesFisicaDto } from './dto/create-avaliacoes_fisica.dto';
 import { UpdateAvaliacoesFisicaDto } from './dto/update-avaliacoes_fisica.dto';
 import { AvaliacaoFisica } from 'src/entities/avaliacoes_fisica.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class AvaliacoesFisicasService {
@@ -22,8 +22,18 @@ export class AvaliacoesFisicasService {
   async pagination(
     page = 1,
     limit = 10,
+    search: string | undefined,
   ): Promise<{ data: AvaliacaoFisica[]; count: number }> {
+    const where = search
+      ? [
+          { aluno: { nome: ILike(`%${search}%`) } },
+          { instrutor: { nome: ILike(`%${search}%`) } },
+          { observacoes: ILike(`%${search}%`) },
+        ]
+      : undefined;
+
     const [data, count] = await this.repository.findAndCount({
+      where,
       skip: (page - 1) * limit,
       take: limit,
       order: { id: 'DESC' },
