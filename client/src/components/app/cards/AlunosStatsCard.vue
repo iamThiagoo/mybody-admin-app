@@ -47,11 +47,7 @@
 
         <div class="mt-4 h-20">
           <VisXYContainer
-            height="80px" :data="data" :style="{
-              '--theme-primary': `hsl(${
-                theme?.cssVars?.[isDark ? 'dark' : 'light']?.primary
-              })`,
-            }"
+            height="80px" :data="data"
           >
             <VisStackedBar
               :x="lineX"
@@ -68,7 +64,6 @@
 
 <script setup lang="ts">
 import { VisLine, VisScatter, VisStackedBar, VisXYContainer } from '@unovis/vue'
-import { computed } from 'vue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 type Data = typeof data[number]
@@ -83,7 +78,7 @@ const data = [
   { revenue: 26475, subscription: 189 },
 ]
 
-const lineX = (d: Data, i: number) => i
+const lineX = (_d: Data, i: number) => i
 const lineY = (d: Data) => d.revenue
 </script>
 ''

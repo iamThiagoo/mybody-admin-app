@@ -4,10 +4,10 @@
       name: nameRef,
       value,
       onInput: handleChange,
-      onBlur: meta.blur,
+      onBlur: handleBlur,
     }"
     :error="errorMessage"
-    />
+  />
 </template>
 
 <script setup lang="ts">
@@ -20,5 +20,5 @@ const props = defineProps<{
 
 const nameRef = toRef(props, 'name')
 
-const { value, errorMessage, handleChange, meta } = useField(nameRef)
+const { value, errorMessage, handleChange, handleBlur } = useField(nameRef)
 </script>
