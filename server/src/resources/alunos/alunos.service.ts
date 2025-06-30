@@ -7,7 +7,7 @@ import { CreateAlunoDto } from './dto/create-aluno.dto';
 import { UpdateAlunoDto } from './dto/update-aluno.dto';
 import { Aluno } from 'src/entities/aluno.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class AlunosService {
@@ -24,8 +24,19 @@ export class AlunosService {
   async pagination(
     page = 1,
     limit = 10,
+    search: string | undefined,
   ): Promise<{ data: Aluno[]; count: number }> {
+    const where = search
+      ? [
+          { nome: ILike(`%${search}%`) },
+          { email: ILike(`%${search}%`) },
+          { telefone: ILike(`%${search}%`) },
+          { cpf: ILike(`%${search}%`) },
+        ]
+      : undefined;
+
     const [data, count] = await this.repository.findAndCount({
+      where,
       skip: (page - 1) * limit,
       take: limit,
       order: { id: 'DESC' },

@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsString,
   IsNotEmpty,
@@ -35,5 +36,6 @@ export class CreateExercicioDto {
   @IsInt()
   @IsOptional()
   @Min(1)
+  @Type(() => Number)
   duracao_minutos?: number;
 }

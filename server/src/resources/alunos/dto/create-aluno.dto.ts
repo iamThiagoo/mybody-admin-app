@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsString,
   IsNotEmpty,
@@ -37,7 +38,7 @@ export class CreateAlunoDto {
   @IsString()
   @IsOptional()
   @Length(1, 1)
-  @IsIn(['M', 'F'])
+  @IsIn(['M', 'F', 'O'])
   genero?: string;
 
   @IsDateString()
@@ -46,6 +47,7 @@ export class CreateAlunoDto {
 
   @IsInt()
   @IsOptional()
+  @Type(() => Number)
   plano_id?: number;
 
   @IsString()

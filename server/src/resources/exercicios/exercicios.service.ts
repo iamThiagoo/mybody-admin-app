@@ -3,7 +3,7 @@ import { CreateExercicioDto } from './dto/create-exercicio.dto';
 import { UpdateExercicioDto } from './dto/update-exercicio.dto';
 import { Exercicio } from 'src/entities/exercicio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class ExerciciosService {
@@ -20,8 +20,20 @@ export class ExerciciosService {
   async pagination(
     page = 1,
     limit = 10,
+    search: string | undefined,
   ): Promise<{ data: Exercicio[]; count: number }> {
+    const where = search
+      ? [
+          { nome: ILike(`%${search}%`) },
+          { descricao: ILike(`%${search}%`) },
+          { grupo_muscular: ILike(`%${search}%`) },
+          { equipamento: ILike(`%${search}%`) },
+          { nivel_dificuldade: ILike(`%${search}%`) },
+        ]
+      : undefined;
+
     const [data, count] = await this.repository.findAndCount({
+      where,
       skip: (page - 1) * limit,
       take: limit,
       order: { id: 'DESC' },

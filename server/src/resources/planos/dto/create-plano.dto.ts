@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsString,
   IsNotEmpty,
@@ -22,10 +23,12 @@ export class CreatePlanoDto {
   @IsNumber({ maxDecimalPlaces: 2 })
   @IsNotEmpty()
   @Min(0)
+  @Type(() => Number)
   preco: number;
 
   @IsInt()
   @IsNotEmpty()
   @Min(1)
+  @Type(() => Number)
   duracao_dias: number;
 }
