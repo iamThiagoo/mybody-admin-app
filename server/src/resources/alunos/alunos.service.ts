@@ -77,7 +77,7 @@ export class AlunosService {
       );
     }
 
-    if (aluno.plano) {
+    if (aluno.plano && Object.keys(aluno.plano).length > 0) {
       throw new InternalServerErrorException(
         `Não é possível remover o aluno pois ele possui um plano cadastrado!`,
       );
